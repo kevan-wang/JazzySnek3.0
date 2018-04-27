@@ -47,22 +47,22 @@ $(document).ready(function(){
 			}
 		// }
 		// else {
-			if(gameOver()) {
-				gameOverProtocol()
-			}
-			else {
-				var analysis = AITurnAnalysisDict("S");
-				var enemyMove = AIDecision(analysis);
-				eval = evalMove(enemyMove, "S")
-				setTimeout(function() {
-					moveScore = doMove(enemyMove, eval[1], "S")
-					updateScore()
-				}, 1000);
-				updateAIMoves(enemyMove, "S")	//	AI decision dictionary.
-				if(gameOver()) {
-					gameOverProtocol()
-				}
-			}
+			// if(gameOver()) {
+			// 	gameOverProtocol()
+			// }
+			// else {
+			// 	var analysis = AITurnAnalysisDict("S");
+			// 	var enemyMove = AIDecision(analysis);
+			// 	eval = evalMove(enemyMove, "S")
+			// 	setTimeout(function() {
+			// 		moveScore = doMove(enemyMove, eval[1], "S")
+			// 		updateScore()
+			// 	}, 1000);
+			// 	updateAIMoves(enemyMove, "S")	//	AI decision dictionary.
+			// 	if(gameOver()) {
+			// 		gameOverProtocol()
+			// 	}
+			// }
 		// }
 		if(gameOver()) {
 			gameOverProtocol()
