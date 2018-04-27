@@ -52,10 +52,13 @@ def register(request):
 		hashedPW = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 		securityKey = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(30))
 		User.objects.create(userName=userData['userName'], passwordHash=hashedPW, securityKey=securityKey)
-		messages.info(request, "You have successfully registered")
+		messages.info(request, slangPos() + "  You have successfully registered!")
 		return redirect('/login_reg')
 
 def login(request):
+	if "userID" in request.session:
+		messages.info(request, slangPos() + "  You are already logged in!")
+		return redirect("/login_reg")
 	errors = User.objects.validatorLogin(request.POST)
 	#	If any errors are found, store the errors as messages & redirect to root.
 	if len(errors):
@@ -68,15 +71,18 @@ def login(request):
 		#	Confirmation of login is the user's ID number stored in the session.
 		request.session["userID"] = user.id
 		request.session["securityKey"] = user.securityKey
-		messages.info(request, "You have successfully logged in!  Welcome back, " + user.userName + "!")
-		return redirect("/")
+		messages.info(request, slangPos() + "  Welcome back, " + user.userName + "!")
+		return redirect("/login_reg")
 
 def logout(request):
 	#	Logging out removes he user's ID from session.
-	request.session.pop("userID")
-	request.session.pop("securityKey")
-	messages.error(request, "You have logged out.")
-	return redirect('/')
+	if "userID" in request.session:
+		request.session.pop("userID")
+		request.session.pop("securityKey")
+		messages.error(request, slangPos() + "  You have logged out.")
+		return redirect('/')
+	else:
+		return redirect('/')
 
 def logScore(request):
 	if "userID" in request.session:
@@ -100,5 +106,18 @@ def retrieveForms(request):
 	for key in keys:
 		data[key] = request.POST[key]
 	return data
+
+def slangPos():
+	randIndex = random.randint(0, len(positiveSlang)-1)
+	return positiveSlang[randIndex]
+
+positiveSlang = [ "Breakin' it Up!",  "Bustin' the Conk!",  "Collarin' the Jive!",
+	"Dicty Dukes!", "Friskin' Whiskers!", "Get Your Boots On!", "In the Groove!",
+	"Swell Jam!", "Hittin' the Licks!", "Muggin' Heavy!", "Neigho, Pops!", "Ridin' the Riffs!"
+]
+
+
+
+
 
 

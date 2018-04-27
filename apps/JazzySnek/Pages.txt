@@ -1,0 +1,32 @@
+Main Page:
+	Register & Login
+	How to Play
+1:01 PM 4/26/2018	Story Mode
+	Quick Game
+	Score Board
+	Snek Facts
+
+Register & Login:
+	Back to Main Page
+
+How to Play:
+	Rules Guide
+	Back to Main Page
+	Story Mode
+	Quick Game
+
+Story Mode:
+	Narrative
+	Back to Main Page
+	Opacity 0.5 text box
+
+Score Board
+	High Scores
+	Best Times
+	
+
+
+
+
+*Save game state in database.
+

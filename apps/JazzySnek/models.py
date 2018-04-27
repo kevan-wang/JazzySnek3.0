@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-import re, datetime, bcrypt
+import re, datetime, bcrypt, random
 
 # Create your models here.
 
@@ -10,14 +10,14 @@ class UserManager(models.Manager):
 		errors = {}
 		for key in userData:		#  Checks that all the forms have been filled out.  Adds error to the errors dictionary if found.
 			if userData[key] == "":
-				errors["emptyField"] = "Error: All forms must be filled out!"
+				errors["emptyField"] = slangNeg() + "  All forms must be filled out!"
 				break
 		errors.update(validName(userData["userName"]))		#  Check validity of email, add all errors found to the errors dictionary.
 		errors.update(validPassword(userData["password1"]))	#  Check validity of password, add all errors found to the errors dictionary.
 		if userData["password1"] != userData["password2"]:			#  Checks that the passwords match, adds error to the errors dictionary if found..
-			errors["passMatch"] = "Error:  Confirmation password does not match!"
+			errors["passMatch"] = slangNeg() + "  Confirmation password does not match!"
 		if User.objects.filter(userName=userData['userName']).count() != 0:	#  Checks if the user is already registered.
-			errors["register"] = "User already exists in database!"
+			errors["register"] = slangNeg() + "  User already exists in database!"
 		return errors
 	def validatorLogin(self, postData):
 		errors = {}
@@ -25,13 +25,13 @@ class UserManager(models.Manager):
 		userPassword = postData["password"]
 		#	Check if the email is found in the database of registered users.
 		if User.objects.filter(userName=userName).count() == 0:
-			errors["login"] = "Error:  Invalid login info"
+			errors["login"] = slangNeg() + "  Invalid login info!"
 		else:
 			user = User.objects.filter(userName=userName).first()
 			hashedPW = user.passwordHash
 			#	Check if the password matches the hashed password in the database.
 			if not bcrypt.checkpw(userPassword.encode('utf-8'), hashedPW.encode('utf-8')):
-				errors["login"] = "Error:  Invalid login info"
+				errors["login"] = slangNeg() + "  Invalid login info!"
 		return errors
 
 class User(models.Model):
@@ -74,7 +74,7 @@ def validName(name):
 	#	Output:  Dictionary of error messages.
 	errors = {}
 	if len(name) < 3 or len(name) > 18:
-		errors["nameLen"] = "Error: Name must be between 3 to 18 characters in length."
+		errors["nameLen"] = slangNeg() + "  Name must be between 3 to 18 characters in length!"
 	return errors
 
 def validPassword(password):
@@ -83,11 +83,19 @@ def validPassword(password):
 	#	Output:  Dictionary of error messages.
 	errors = {}
 	if len(password) < 8:
-		errors["passLen"] = "Error: Password must be at least 8 characters long."
+		errors["passLen"] = slangNeg() + "  Password must be at least 8 characters long!"
 	if not hasNumber(password):
-		errors["passNum"] = "Error: Password requires at least one number."
+		errors["passNum"] = slangNeg() + "  Password requires at least one number!"
 	if not hasCap(password):
-		errors["passCap"] = "Error:  Password requires at least one capitalized letter."
+		errors["passCap"] = slangNeg() + "  Password requires at least one capitalized letter!"
 	return errors
+
+def slangNeg():
+	randIndex = random.randint(0, len(negativeSlang)-1)
+	return negativeSlang[randIndex]
+
+negativeSlang = [ "Sad and Salty!", "Off Time Jive!", "Nixed Out!",
+	"Wrong Riff!", "Beat for the Doss!"
+]
 
 

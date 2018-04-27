@@ -14,14 +14,6 @@
 
 
 $(document).ready(function(){
-
-///		############ GAME SETTINGS ############
-
-	borderChance = 0.5	// Chance that the border will become owned by JazzySnek.
-
-
-
-
 	// Master Controller
 	$(".tile").click(function(event){
 		// if(!checkFreeze("J")) {		// if the game is NOT frozen on J's turn, execute his turn.
@@ -30,18 +22,51 @@ $(document).ready(function(){
 			var eval = evalMove(coords, "J");
 			if (eval[0]) {
 				//	Perform JazzySnek's move!!!
-				processFullMove(coords, eval[1], "J")
+				var moveScore = doMove(coords, eval[1], "J")
+				//	Randomize the border tiles.
+				updateScore()
+				randomizeBorder();
+				updateAIMoves(coords)	//	AI decision dictionary.
 				//	Perform Spidey's Move!
-				var analysis = AITurnAnalysisDict("S");
-				var enemyMove = AIDecision(analysis);
-				eval = evalMove(enemyMove, "S")
-				setTimeout(function() {
-					processFullMove(enemyMove, eval[1], "S")
-				}, 1000);
+				// if(!checkFreeze("S")) {
+					var analysis = AITurnAnalysisDict("S");
+					var enemyMove = AIDecision(analysis);
+					eval = evalMove(enemyMove, "S")
+					setTimeout(function() {
+						moveScore = doMove(enemyMove, eval[1], "S")
+						updateScore()
+					}, 1000);
+					updateAIMoves(enemyMove)	//	AI decision dictionary.
+					// if(gameOver()) {
+					// 	gameOverProtocol()	
+					// }
+				// }
+				// else if(gameOver()) {
+				// 	gameOverProtocol()
+				// }
 				if(gameOver()) {
 					gameOverProtocol()
 				}
 			}
+		// }
+		// else {
+			// if(gameOver()) {
+			// 	gameOverProtocol()
+			// }
+			// else {
+			// 	var analysis = AITurnAnalysisDict("S");
+			// 	var enemyMove = AIDecision(analysis);
+			// 	eval = evalMove(enemyMove, "S")
+			// 	setTimeout(function() {
+			// 		moveScore = doMove(enemyMove, eval[1], "S")
+			// 		updateScore()
+			// 	}, 1000);
+			// 	updateAIMoves(enemyMove, "S")	//	AI decision dictionary.
+			// 	if(gameOver()) {
+			// 		gameOverProtocol()
+			// 	}
+			// }
+		// }
 	});
 
 
@@ -70,14 +95,6 @@ $(document).ready(function(){
 		else {
 			return false;
 		}
-	}
-
-
-	function processFullMove(coords, evaluation, player) {
-		doMove(coords, evaluation, player)	// Actually do the move
-		updateScore()			// 	update the score
-		updateAIMoves(coords)	//	update the list of possible moves.
-		randomizeBorder();		//	randomize the border
 	}
 
 	function updateScore() {
@@ -437,6 +454,9 @@ possibleMoves = [ "#33", "#34", "#35", "#36", "#43", "#46", "#53", "#56", "#63",
 
 
 
+///		############ GAME SETTINGS ############
+
+boderChance = 0.5	// Chance that the border will become owned by JazzySnek.
 
 
 
