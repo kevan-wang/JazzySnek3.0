@@ -16,12 +16,11 @@
 $(document).ready(function(){
 	// Master Controller
 	$(".tile").click(function(event){
-		if(!checkFreeze("J")) {		// if the game is NOT frozen on J's turn, execute his turn.
+		// if(!checkFreeze("J")) {		// if the game is NOT frozen on J's turn, execute his turn.
 			var coords = getCoords(event);
 			var owner = checkOwner(coords);
 			var eval = evalMove(coords, "J");
 			if (eval[0]) {
-				counter += 2;
 				//	Perform JazzySnek's move!!!
 				var moveScore = doMove(coords, eval[1], "J")
 				//	Randomize the border tiles.
@@ -29,7 +28,7 @@ $(document).ready(function(){
 				randomizeBorder();
 				updateAIMoves(coords, "J")	//	AI decision dictionary.
 				//	Perform Spidey's Move!
-				if(!checkFreeze("S")) {
+				// if(!checkFreeze("S")) {
 					var analysis = AITurnAnalysisDict("S");
 					var enemyMove = AIDecision(analysis);
 					eval = evalMove(enemyMove, "S")
@@ -38,16 +37,16 @@ $(document).ready(function(){
 						updateScore()
 					}, 1000);
 					updateAIMoves(enemyMove, "S")	//	AI decision dictionary.
-					if(gameOver()) {
-						gameOverProtocol()	
-					}
-				}
-				else if(gameOver()) {
-					gameOverProtocol()
-				}
+					// if(gameOver()) {
+					// 	gameOverProtocol()	
+					// }
+				// }
+				// else if(gameOver()) {
+				// 	gameOverProtocol()
+				// }
 			}
-		}
-		else {
+		// }
+		// else {
 			if(gameOver()) {
 				gameOverProtocol()
 			}
@@ -64,7 +63,7 @@ $(document).ready(function(){
 					gameOverProtocol()
 				}
 			}
-		}
+		// }
 		if(gameOver()) {
 			gameOverProtocol()
 		}

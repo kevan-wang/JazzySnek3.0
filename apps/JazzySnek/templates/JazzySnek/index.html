@@ -29,7 +29,6 @@
 				var audio = {};
 				for(i=0; i <= (songList.length)-1; i++) {				//  Load up a sound library with all the sounds.
 					name = songList[i]
-					console.log(name)
 					source = "../../static/JazzySnek/audio/" + name
 					audio[name] = new Audio();
 					audio[name].src = source
