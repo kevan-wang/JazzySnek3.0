@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<title> JazzySnek </title>
+		{% load static %}
+    	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/highScoresStyle.css' %}">
+		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' ></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				var element = jQuery(".glowText").get();
+				setInterval(function() {
+				    $(element).toggleClass('a').animate({
+				        textShadow: "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95"
+				    },
+				    300,
+				    function() {
+				        $(element).toggleClass('a').animate({
+				            textShadow: "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #30e0ff, 0 0 30px #30e0ff, 0 0 40px #30e0ff, 0 0 50px #30e0ff, 0 0 75px #30e0ff"
+				        });
+				    });
+				},
+				300);
+
+				var audio = {};
+				for(i=0; i <= (songList.length)-1; i++) {				//  Load up a sound library with all the sounds.
+					name = songList[i]
+					console.log(name)
+					source = "../../static/JazzySnek/audio/" + name
+					audio[name] = new Audio();
+					audio[name].src = source
+				}
+				randSong = Math.floor(Math.random()*songList.length)
+				audio[songList[randSong]].play();
+
+			});
+
+			songList = [
+				"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3", 
+				"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
+				"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", 
+				"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3",
+				"Tape Five -  Geraldines Routine.mp3"
+			]
+		</script>
+
+	</head>
+	<body>
+		<div id="mainField">
+			<p class="greeting glowText">Welcome back, {{ name }}!</p>
+			<form action="/logout" id="logoutForm">
+				<input type="submit" id="logout" name="logout" value="Log Out!">
+			</form>
+			<h1 class="title glowText">High Scores!</h1>
+			<div id="scoreBoard">
+				<table>
+					<tr>
+						<th>Player</th>
+						<th>Score</th>
+						<th>Title</th>
+					</tr>
+					{% for user in users %}
+						<tr>
+							<td>{{ user.userName }}</td>
+							<td>{{ user.highScore }}</td>
+							<td>{{ user.status }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+			<form action="/" id="menu">
+				<input type="submit" name="mainMenu" value="Back to the Main Menu!!">
+			</form>
+		</div>
+	</body>
+</html>
+
+<!--  -->
+
+
+
+
+

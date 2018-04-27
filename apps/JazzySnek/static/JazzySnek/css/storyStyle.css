@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+@font-face {
+	font-family: bettynoir;
+	src: url("../fonts/bettynoir.ttf");
+}
+
+@font-face {
+	font-family: willow;
+	src: url("../fonts/willow.ttf");
+}
+
+@font-face {
+	font-family: norton;
+	src: url("../fonts/norton.ttf");
+}
+
+body {
+	background-color: #000000;
+	width: 1500px;
+	margin: 0px auto;
+}
+
+#mainField {
+	height: 1000px;
+	width: 1500px;
+	background-image: url("../images/background.jpg");
+	background-size: 1500px 1000px;
+	text-align: center;
+}
+
+h2 {
+	padding-top: 50px;
+	color: black;
+	font-size: 60px;
+	font-family: bettynoir;
+   	transition:text-shadow 0.5s ease-in-out;    
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+	letter-spacing: 5px;
+}
+
+#imageField {
+	height: 650px;
+	width: 1500px;
+}
+
+#textField {
+	margin: 0px auto;
+	padding: 30px;
+	height: 200px;
+	width: 900px;
+	border-radius: 50;
+	border: 3px gray;
+	background: linear-gradient(rgba(0, 86, 162, 0.8), rgba(0, 41, 77, 0.8));
+	display: inline-block;
+}
+
+img {
+	margin-top: 75px;
+}
+
+p {
+	margin: 20px;
+	color: white;
+	font-size: 1.8em;
+	text-shadow: 3px 3px 0px black, 5px 5px 0px black;
+	letter-spacing: 2px;
+	text-align: left;
+}
+
+
+#continue {
+	margin: 20px;
+	color: white;
+	font-family: norton;
+	font-size: 1.5em;
+	text-shadow: 5px 5px 0px black, 7px 7px 0px black;
+	letter-spacing: 2px;
+}
+
+#snek {
+	position: absolute;
+	top: 250px;
+}
+
+#spidey {
+	float: right;
+	margin-top: 350px;
+}
+
+#fop {
+	float: right;
+	margin-top: 350px;
+}
+
+input {
+	margin-top: 30px;
+	width: 350px;
+	padding: 8px 0px;
+	font-size: 2em;
+	font-family: bettynoir;
+	border-radius: 8px;
+	color: white;
+	background: linear-gradient(#0056a2, #00294d);
+}
+
+#sideFormL {
+	position: absolute;
+	top: 730px;
+}
+
+.text39 {
+	margin-top: 40px;
+}
+
+#sideFormR {
+	position: absolute;
+	top: 730px;
+	left: 1450px;
+}
+
+.sideButton {
+	display: block;
+	margin-left: 75px;
+	margin-right: 75px;
+	width: 100px;
+	font-size: 1.5em;
+	top: 100px;
+}
+
+
+
+

@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+@font-face {
+	font-family: bettynoir;
+	src: url("../fonts/bettynoir.ttf");
+}
+
+@font-face {
+	font-family: willow;
+	src: url("../fonts/willow.ttf");
+}
+
+body {
+	background-color: #000000;
+	width: 1500px;
+	margin: 0px auto;
+}
+
+#mainField {
+	height: 1000px;
+	width: 1500px;
+	background-image: url("../images/background.jpg");
+	background-size: 1500px 1000px;
+}
+
+.title {
+	padding-top: 30px;
+	color: black;
+	font-size: 100px;
+	font-family: bettynoir;
+   	transition:text-shadow 0.5s ease-in-out;    
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+	letter-spacing: 5px;
+	text-align: center;
+}
+
+.title.a {
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #30e0ff, 0 0 30px #30e0ff, 0 0 40px #30e0ff, 0 0 50px #30e0ff, 0 0 75px #30e0ff;
+}
+
+#description {
+	padding-top: 20px;
+	color: white;
+	font-family: willow;
+	font-size: 3em;
+	text-shadow: 5px 5px 0px black, 7px 7px 0px indigo;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+#selectScreen {
+	width: 600px;
+	padding-top: 30px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+input {
+	margin-top: 15px;
+	width: 350px;
+	padding: 8px 0px;
+	font-size: 2em;
+	font-family: bettynoir;
+	border-radius: 8px;
+	color: white;
+	background: linear-gradient(#186ab1, #00294d);
+}
+
+#JazzySnek {
+	float: left;
+}
+
+#Foptopus {
+	float: right;
+}
+
+.greeting {
+	padding: 10px;
+	margin-left: 10px;
+	color: black;
+	font-size: 20px;
+	font-weight: bold;
+   	transition:text-shadow 0.5s ease-in-out;    
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+	text-align: left;
+	display: inline;
+}
+
+.greeting.a {
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #30e0ff, 0 0 30px #30e0ff, 0 0 40px #30e0ff, 0 0 50px #30e0ff, 0 0 75px #30e0ff;
+}
+
+#logout {
+	margin: 5px;
+	width: 100px;
+	font-size: 1em;
+	display: inline;
+	padding: 3px 6px;
+}
+
+#logoutForm {
+	display: inline;
+	margin-left: 1050px;
+}
+
+
+
+
+
+
+

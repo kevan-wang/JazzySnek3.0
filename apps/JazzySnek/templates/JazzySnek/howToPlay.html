@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<title> JazzySnek </title>
+		{% load static %}
+    	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/howToStyle.css' %}">
+		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' ></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				pagesDict = [ ".page1", ".page2", ".page3" ]
+				for (i = 1; i < pagesDict.length; i++) {
+					page = pagesDict[i]
+					$(page).hide()
+				}
+				var element = jQuery("#title").get();
+				setInterval(function() {
+				    $(element).toggleClass('a').animate({
+				        textShadow: "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95"
+				    },
+				    500,
+				    function() {
+				        $(element).toggleClass('a').animate({
+				            textShadow: "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #30e0ff, 0 0 30px #30e0ff, 0 0 40px #30e0ff, 0 0 50px #30e0ff, 0 0 75px #30e0ff"
+				        });
+				    });
+				},
+				500);
+
+				pagesIndex = 0
+				page = pagesDict[0]
+				$(".page").click(function(event){
+					$(page).fadeOut()
+					if(pagesIndex == pagesDict.length-1) {
+						pagesIndex = 0
+						page = pagesDict[0]
+						setTimeout(function() {
+							$(page).fadeIn()
+						}, 600);
+					}
+					else {
+						pagesIndex++
+						page = pagesDict[pagesIndex]
+						setTimeout(function() {
+							$(page).fadeIn()
+						}, 600);
+					}
+				});
+
+
+				var audio = {};
+				for(i=0; i <= (songList.length)-1; i++) {				//  Load up a sound library with all the sounds.
+					name = songList[i]
+					console.log(name)
+					source = "../../static/JazzySnek/audio/" + name
+					audio[name] = new Audio();
+					audio[name].src = source
+				}
+				randSong = Math.floor(Math.random()*songList.length)
+				audio[songList[randSong]].play();
+
+
+			});
+
+			songList = [
+				"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3",
+				"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
+				"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", 
+				"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3",
+				"Tape Five -  Geraldines Routine.mp3"
+			]
+
+		</script>
+	</head>
+	<body>
+		<div id="mainField">
+			<div class="page1 page">
+				<h2>Objective</h2>
+				<img src="{% static 'JazzySnek/images/howTo/howTo1.jpg' %}" alt="howTo1">
+				<div id="howTo1" class="instructions">
+					<p>JazzySnek wants to become a swing dancer.  Be a hep cat and help him out by dominating the dance floor!</p>
+					<p>Collar this jive by converting floor tiles to his color!</p>
+					<p id="continue">(Click anywhere to continue)</p>
+				</div>
+				<form action="/">
+					<input type="submit" name="mainMenu" value="Back to the Main Menu!!">
+				</form>
+			</div>
+			<div class="page2 page">
+				<h2>Capturing Territory</h2>
+				<img src="{% static 'JazzySnek/images/howTo/howTo2.gif' %}" alt="howTo1">
+				<div id="howTo1" class="instructions">
+					<p>Click on color-changing dance floor tiles to place a new green tile! (red arrow)</p>
+					<p>Any purple tiles sandwiched between your click and the nearest green tile will be converted to green!</p>
+					<p id="continue">(Click anywhere to continue)</p>
+				</div>
+				<form action="/">
+					<input type="submit" name="mainMenu" value="Back to the Main Menu!!">
+				</form>
+			</div>
+			<div class="page3 page">
+				<h2>Borders</h2>
+				<img id="image3" src="{% static 'JazzySnek/images/howTo/howTo3.gif' %}" alt="howTo1">
+				<div id="howTo1" class="instructions">
+					<p>Though JazzySnek can't go on the border tiles, they count as green or purple for placement!</p>
+					<p>Be careful though, border tiles will change colors with each move!</p>
+					<p id="continue">(Click anywhere to start over)</p>
+				</div>
+				<form action="/">
+					<input type="submit" name="mainMenu" value="Back to the Main Menu!!">
+				</form>
+			</div>
+			</div>
+	</body>
+</html>
+
+<!--  -->
+
+
+
+
+

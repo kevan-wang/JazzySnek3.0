@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+@font-face {
+	font-family: bettynoir;
+	src: url("../fonts/bettynoir.ttf");
+}
+
+@font-face {
+	font-family: willow;
+	src: url("../fonts/willow.ttf");
+}
+
+body {
+	background-color: #000000;
+	width: 1500px;
+	margin: 0px auto;
+}
+
+.glowText {
+	text-align: center;
+	padding-top: 40px;
+	color: black;
+   	transition:text-shadow 0.5s ease-in-out;    
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+	letter-spacing: 5px;
+}
+
+.glowText.a {
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #30e0ff, 0 0 30px #30e0ff, 0 0 40px #30e0ff, 0 0 50px #30e0ff, 0 0 75px #30e0ff;
+}
+
+.title {
+	font-size: 2.5em;
+	font-family: bettynoir;
+}
+
+.name {
+	font-size: 1.8em;
+	font-family: willow;
+}
+
+#gameField {
+	height: 1000px;
+	width: 1500px;
+	background-image: url("../images/background.jpg");
+	background-size: 1500px 1000px;
+}
+
+#danceFloor {
+	height: 600px;
+	width: 600px;
+	margin: 0px auto;
+	padding-top: 100px;
+}
+
+.tile {
+	height: 58px;
+	width: 58px;
+	border: 1px solid black;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.tile1 {
+	background-color: red;
+}
+
+.tile2 {
+	background-color: green;
+}
+
+.tile3 {
+	height: 56px;
+	width: 56px;
+	border: 2px solid black;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #2e9512
+}
+
+.tile4 {
+	height: 56px;
+	width: 56px;
+	border: 2px solid black;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #2e9512
+}
+
+.tile5 {
+	height: 56px;
+	width: 56px;
+	border: 2px solid black;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #bd11cc
+}
+
+.tile6 {
+	height: 56px;
+	width: 56px;
+	border: 2px solid black;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #bd11cc
+}
+
+.bord1 {
+	height: 58px;
+	width: 58px;
+	background-image: url("../images/borderTiles/bord1.jpg");
+	background-size: 58px 58px;	
+	border: 1px solid gray;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.bord2 {
+	height: 58px;
+	width: 58px;
+	background-image: url("../images/borderTiles/bord2.jpg");
+	background-size: 58px 58px;	
+	border: 1px solid gray;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.player {
+	position: absolute;
+	float: left;
+	height: 60px;
+	width: 60px;
+}
+
+.JazzySnek {
+	margin-left: 240px;
+	margin-top: 240px;	
+}
+
+.SpideyLegs {
+	margin-left: 240px;
+	margin-top: 300px;	
+}
+
+#JazzySnek {
+	position: absolute;
+	top: 550px;
+}
+
+#Spider {
+	float: right;
+	margin-top: 480px;
+}
+
+#scoreBoard {
+	position: absolute;
+	height: 375px;
+	width: 300px;
+	left: 1330px;
+}
+
+.score {
+	padding: 20px 0px;
+	font-size: 3em;
+	font-family: willow;
+}
+
+.scoreName {
+	padding: 15px 0px;
+	font-size: 2em;
+	font-family: willow;	
+}
+
+#JazzyScore, #SpideyScore {
+	padding: 0;
+	font-size: 2em;
+	font-family: willow;	
+}
+
+#scoreBoardBackground {
+	position: absolute;
+	height: 375px;
+	width: 300px;
+	left: 1330px;
+	opacity: 0.8;
+}
+
+#menu {
+	margin-left: 605px;
+}
+
+#menuButton {
+	margin-top: 40px;
+	width: 300px;
+	padding: 8px 0px;
+	font-size: 1.5em;
+	font-family: bettynoir;
+	border-radius: 8px;
+	color: white;
+	background: linear-gradient(#0056a2, #00294d);
+}
+
+
+
+
+
+
+

@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+@font-face {
+	font-family: bettynoir;
+	src: url("../fonts/bettynoir.ttf");
+}
+
+@font-face {
+	font-family: willow;
+	src: url("../fonts/willow.ttf");
+}
+
+body {
+	background-color: #000000;
+	width: 1500px;
+	margin: 0px auto;
+}
+
+#mainField {
+	height: 1000px;
+	width: 1500px;
+	background-image: url("../images/background.jpg");
+	background-size: 1500px 1000px;
+	text-align: center;
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+h4, .textBox {
+	color: white;
+	display: inline-block;
+	margin: 10px;
+}
+
+h2 {
+	color: white;
+	font-size: 2em;
+	background-color: #000566;
+	padding: 10px;
+	font-family: bettynoir;
+}
+
+.textBox {
+	width: 180px;
+	color: black;
+}
+
+.fieldDiv {
+	text-align: right;
+	margin-top: 10px;
+}
+
+input {
+	padding: 3px 6px;
+}
+
+form {
+	background-color: #0065b3;
+}
+
+.submitButton {
+	margin: 10px;
+	padding: 3px 6px;
+	margin-left: 40%;
+	color: white;
+	background: linear-gradient(#186ab1, #00294d);
+}
+
+#registrationBox {
+	margin: 0px auto;
+	padding-top: 200px;
+	height: 200px;
+	width: 400px;
+	display: inline-block;
+	margin: 30px;
+}
+
+#loginBox {
+	margin: 0px auto;
+	padding-top: 200px;
+	height: 200px;
+	width: 340px;
+	display: inline-block;
+	margin: 30px;
+}
+
+#alertMessage {
+	padding-left: 30px
+}
+
+.loginField {
+	margin-top: 28px;
+	margin-bottom: 20px;
+}
+
+#alertMessage {
+	margin-top: 50px;
+	margin: 50px 400px 0px 400px;
+	color: white;
+	font-size: 1.5em;
+	background: rgba(29, 0, 51, 0.8);
+	border-radius: 10px;
+}
+
+.messageSpace {
+	margin: 10px;
+}
+
+#backButton {
+	background: none;
+	padding-top: 50px;
+}
+
+#back {
+	margin: 10px;
+	padding: 4px 8px;
+	color: white;
+	background: linear-gradient(#186ab1, #00294d);
+}
+
+
+
+
+
+

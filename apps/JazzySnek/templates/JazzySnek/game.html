@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<title> JazzySnek </title>
+		{% load static %}
+    	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/gameStyle.css' %}">
+		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' ></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="{% static 'JazzySnek/js/displayFunctions.js' %}"></script>
+		<script type="text/javascript" src="{% static 'JazzySnek/js/gameFunctions.js' %}"></script>
+		<script>
+			$(document).ready(function(){
+				var audio = {};
+				for(i=0; i <= songList.length-1; i++) {				//  Load up a sound library with all the sounds.
+					name = "Caravan Palace - Black Betty.mp3"
+					source = "../../static/JazzySnek/audio/" + name
+					audio[name] = new Audio();
+					audio[name].src = source
+					break;
+				}
+				audio["Caravan Palace - Black Betty.mp3"].play();
+
+				var element = $(".glowText").get();
+				setInterval(function() {
+				    $(element).toggleClass('a').animate({
+				        textShadow: "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95"
+				    },
+				    300,
+				    function() {
+				        $(element).toggleClass('a').animate({
+				            textShadow: "0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #30e0ff, 0 0 30px #30e0ff, 0 0 40px #30e0ff, 0 0 50px #30e0ff, 0 0 75px #30e0ff"
+				        });
+				    });
+				},
+				300);
+
+			});
+
+			var songList = [
+				"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3", "Caravan Palace - Lone Digger.mp3",
+				"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
+				"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", 
+				"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3",
+				"Tape Five -  Geraldines Routine.mp3"
+			]
+		</script>
+	</head>
+	<body>
+
+		<div id="gameField">
+			<h1 class="glowText title">DanceOff!</h1>
+			<div id="JazzySnek">
+				<h4 class="glowText name">JazzySnek</h4> 
+				<img src="{% static 'JazzySnek/images/Snake.gif' %}" alt="Snek">
+			</div>
+			<div id="Spider">
+				<h4 class="glowText name">SpideyLegs</h4>
+				<img src="{% static 'JazzySnek/images/Spider.gif' %}" alt="Spider">
+			</div>
+			<img id="scoreBoardBackground" src="{% static 'JazzySnek/images/ScoreBoard.gif' %}">
+			<div id="scoreBoard">
+				<p class="glowText score">SCORE:</p>
+				<p class="glowText scoreName">Jazzy</p>
+				<p id="JazzyScore" class="glowText">2</p>
+				<p class="glowText scoreName">Spidey</p>
+				<p id="SpideyScore" class="glowText">2</p>
+			</div>
+			<div id="danceFloor">
+				<img class="JazzySnek player" src="{% static 'JazzySnek/images/Snek.gif' %}" alt="Snek">
+				<img class="SpideyLegs player" src="{% static 'JazzySnek/images/Spidey.gif' %}" alt="Spidey">
+			</div>
+			<form action="/log_score" id="menu" name="menu" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="finalScore" value="">
+				<input type="submit" id="menuButton" name="game" value="Back to Menu!">
+			</form>
+		</div>
+	</body>
+</html>
+
+<!--  -->
+
+
+
+
+

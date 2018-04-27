@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<title> JazzySnek </title>
+		{% load static %}
+    	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/storyStyle.css' %}">
+		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' ></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				textDict = []
+				for (i = 1; i < 40; i++) {
+					textDict.push(".text" + i)
+				}
+				$(".text").hide()
+				$(".img").hide()
+				$(".text1").show()
+
+				console.log(textDict)
+				textIndex = 0
+				text = textDict[0]
+				$("#textField").click(function(event){
+					$(text).fadeOut()
+					textIndex++
+					text = textDict[textIndex]
+					imgName = $(text).attr("name")
+					if (imgName != "") {
+						separator = imgName.indexOf("/")
+						fadeImg = imgName.substring(0, separator)
+						newImg = imgName.substring(separator+1, imgName.length)
+						if (fadeImg != "") {
+							$(fadeImg).fadeOut()
+						}
+					}
+					setTimeout(function() {
+						$(text).fadeIn()
+						if (newImg != "") {
+							$(newImg).fadeIn()
+						}
+					}, 600);
+				});
+
+				var audio = new Audio();
+				source = "../../static/JazzySnek/audio/Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3"
+				audio.src = source
+				audio.play();
+
+			});
+		</script>
+	</head>
+	<body>
+		<div id="mainField">
+			<div id="imageField">
+				<img id="snek" class="img Snake" src="{% static 'JazzySnek/images/storyMode/Snake.gif' %}" alt="Snake">
+				<img id="spidey" class="img Spider" src="{% static 'JazzySnek/images/storyMode/Spider.gif' %}" alt="Spider">
+				<img id="fop" class="img Foptopus" src="{% static 'JazzySnek/images/storyMode/Foptopus.gif' %}" alt="Foptopus">
+
+				<img class="img nightSky" src="{% static 'JazzySnek/images/storyMode/nightSky.jpg' %}" alt="nightSky">
+				<img class="img jazz" src="{% static 'JazzySnek/images/storyMode/jazz.jpg' %}" alt="jazz">
+				<img class="img night2" src="{% static 'JazzySnek/images/storyMode/night2.jpg' %}" alt="night2">
+				<img class="img doors" src="{% static 'JazzySnek/images/storyMode/doors.jpg' %}" alt="doors">
+				<img class="img bouncer" src="{% static 'JazzySnek/images/storyMode/bouncer.jpg' %}" alt="bouncer">
+			</div>
+			<form action="/" id="sideFormL" name="menu">
+				<input type="submit" class="sideButton" name="game" value="Menu!">
+			</form>					
+			<div id="textField">
+				<p class="text1 text" name="">A hot, heavy beat fills the night air. <br><br> (Click text box to continue)</p>
+				<p class="text2 text" name="/.nightSky">It's full black out... well past the time for more sensible critters to slip into their lily whites.  The smell of cigarette smoke hangs in the air.
+					</p>
+				<p class="text3 text" name="">It's the scent of run-down dive bars and work weeks that've stretched on for far too long...</p>
+				<p class="text4 text" name="">...the cologne of tired working class stiffs and manic-depressive artists.  It's the lingering smell of shady alleys meshed with urban sophistication.</p>
+				<p class="text5 text" name="">And that's what I'm here for.  Not the stink of cigarette smoke.</p>
+				<p class="text6 text" name=".nightSky/.jazz">No, I'm here for the music.</p>
+				<p class="text7 text" name=".jazz/.night2">I wait patiently in line with the other jazz-heads.  They shift their weight and check their watches, trying to endure the tedium that'd stretched them around the corner not too long ago.</p>
+				<p class="text8 text" name="">But each mincing little step forward is a wave that percolates down the line, and watching the movement of all those bodies in offset synchrony... well, that's just a taste of what's to come.</p>
+				<p class="text9 text" name=".night2/.doors">I'm so close now.  The doors to the club swing open, and a gust of hot air hits me in the face.
+				<p class="text10 text" name="">The sharp trill of a singer cuts through the otherwise muted night, and the rhythm of the music, like the heartbeat of the nightclub, resonates through the concrete and up my body.</p>
+				<p class="text11 text" name=".doors/.bouncer">I slither up to the bouncer.  Presenting ol' Saint Peter with my ID, I straighten up and try to look like I belong.</p>
+				<p class="text12 text" name="">“Forty bucks to get in,” he says in a bass rumble.  The guy is built like a gorilla, and he sounds like one to boot.</p>
+				<p class="text13 text" name="/.Snake">“Here you go.”</p>
+				<p class="text14 text" name="">I pass him a couple Andrew Jacksons.  I can hardly spare the Presidents, but here's hoping it'll be worth it.</p>
+				<p class="text15 text" name=".bouncer/">I'm about to enter the club proper when a figure bars my way.</p>
+				<p class="text16 text" name=".Snake/.Spider">“Hey!  What are you doing here!?”</p>
+				<p class="text17 text" name=".Spider/.Snake">“Huh?” I blink.  The angry arachnid who's just stopped me reeks of alcohol.  “I'm just going in.  I love swing music.”</p>
+				<p class="text18 text" name=".Snake/.Spider">“You don't belong here, Jack.  You're a snek.”</p>
+				<p class="text19 text" name=".Spider/.Snake">“My name isn't Jack.  I'm JazzySnek.”</p>
+				<p class="text20 text" name=".Snake/.Spider">“Like hell you are!  You've got no groove, Sonny-Jim.  Sneks can't swing dance!”</p>
+				<p class="text21 text" name="">I look to the bouncer to intervene, but he isn't saying anything.  In fact, he's making a point to ignore this altercation and focus on the other clubbers.  This fella must be one of the regulars.</p>
+				<p class="text22 text" name=".Spider/.Snake">Who says sneks can't swing dance?”</p>
+				<p class="text23 text" name=".Snake/.Spider">“Sneks don't wear hats.  And having a hat is central to being a proper swing dancer.  Now hit the curb, ya dewdapper.  Or you want me to go big six on yous?”</p>
+				<p class="text24 text" name=".Spider/">I refrain from pointing out that I do, indeed, have a hat.  A fine, spectacular fedora in fact.</p>
+				<p class="text25 text" name="">I'm not about to leave just because some drunk spider doesn't like the shape of my head.</p>
+				<p class="text26 text" name="">Problem though is that if the bouncer isn't stepping in between us, this fella here must be a real jitter bug... one with enough clout to act like he owns the place and get away with it.</p>
+				<p class="text27 text" name="">In this world holding your own on the dance floor is everything, and by the look of this fella he's got a mean set of stilts.</p>
+				<p class="text28 text" name="">I'm stuck.  I can't get in with this hopped up high-hat holding the gate, and I doubt the bouncer is just gonna give me back my money.</p>
+				<p class="text29 text" name="">But before things escalate, another figure steps out of the club and intervenes.</p>
+				<p class="text30 text" name="/.Foptopus">“Hold on now!  What's going on here?”</p>
+				<p class="text31 text" name="">The newcomer examines me through his monocle, adjusting his top hat as he leans in.</p>
+				<p class="text32 text" name="">The Foptopus!  I can hardly believe my eyes.  One of the best swing dancers back in the day, and a real swell fella to boot, if his reputation is accurate.</p>
+				<p class="text33 text" name="">Half dapper gent, half hep cat, half octopus.  And he's interceding on my behalf!  <br><br> Or so I hope.</p>
+				<p class="text34 text" name="">“SpideyLegs!  Why are you harassing this patron?”</p>
+				<p class="text35 text" name=".Foptopus/.Spider">“Just keepin' the riffraff out.  The regulars don't come for a clambake, and this newcomer is green to the gills.  Literally!”</p>
+				<p class="text36 text" name=".Spider/.Snake">“Sneks don't have gills.”</p>
+				<p class="text37 text" name=".Snake/.Foptopus">“Well!  I would've thought you were better than that, SpideyLegs!  You know that isn't how we do things around here.”</p>
+				<p class="text38 text" name=".Foptopus/.Spider">“Fine!  We'll settle things on the dancefloor then!  Frisk your whiskers and set the tune.  It's time to DANCE!”</p>
+				<form action="/quick_game" class="text39 text" name="/.Snake">
+					<input type="submit" name="game" value="Danceoff!">
+				</form>					
+			</div>
+			<form action="/quick_game" id="sideFormR" name="game">
+				<input type="submit" class="sideButton" value="Play!">
+			</form>					
+		</div>
+	</body>
+</html>
+
+<!--  -->
+
+<!-- 			<img src="{% static 'JazzySnek/images/storyMode/doors.jpg' %}" alt="howTo1">
+ -->
+
+<!-- 			<div class="page1 page">
+				<div id="howTo1" class="instructions">
+					<p>JazzySnek wants to become a swing dancer.  Be a hep cat and help him out by dominating the dance floor!</p>
+					<p>Collar this jive by converting floor tiles to his color!</p>
+					<p id="continue">(Click anywhere to continue)</p>
+				</div>
+				<form action="/">
+					<input type="submit" name="mainMenu" value="Back to the Main Menu!!">
+				</form>
+			</div>
+			<div class="page2 page">
+				<h2>Capturing Territory</h2>
+				<img src="{% static 'JazzySnek/images/howTo/howTo2.gif' %}" alt="howTo1">
+				<div id="howTo1" class="instructions">
+					<p>Click on color-changing dance floor tiles to place a new green tile! (red arrow)</p>
+					<p>Any purple tiles sandwiched between your click and the nearest green tile will be converted to green!</p>
+					<p id="continue">(Click anywhere to continue)</p>
+				</div>
+				<form action="/">
+					<input type="submit" name="mainMenu" value="Back to the Main Menu!!">
+				</form>
+			</div>
+			<div class="page3 page">
+				<h2>Borders</h2>
+				<img id="image3" src="{% static 'JazzySnek/images/howTo/howTo3.gif' %}" alt="howTo1">
+				<div id="howTo1" class="instructions">
+					<p>Though JazzySnek can't go on the border tiles, they count as green or purple for placement!</p>
+					<p>Be careful though, border tiles will change colors with each move!</p>
+					<p id="continue">(Click anywhere to start over)</p>
+				</div>
+				<form action="/">
+					<input type="submit" name="mainMenu" value="Back to the Main Menu!!">
+				</form>
+			</div>
+			</div> -->
+
