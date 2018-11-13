@@ -6,9 +6,11 @@
 		<title> JazzySnek </title>
 		{% load static %}
     	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/storyStyle.css' %}">
+    	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/topBar.css' %}">
 		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' ></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="{% static 'JazzySnek/js/audioHandlers.js' %}"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				textDict = []
@@ -19,7 +21,6 @@
 				$(".img").hide()
 				$(".text1").show()
 
-				console.log(textDict)
 				textIndex = 0
 				text = textDict[0]
 				$("#textField").click(function(event){
@@ -42,17 +43,21 @@
 						}
 					}, 600);
 				});
-
-				var audio = new Audio();
-				source = "../../static/JazzySnek/audio/Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3"
-				audio.src = source
-				audio.play();
-
 			});
 		</script>
 	</head>
 	<body>
+		<span id="pageSong" name="Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3"></span>
 		<div id="mainField">
+			<!-- <div id="topBar">
+				<p class="greeting glowText">Welcome back, {{ name }}!</p>
+				<div id="controller">
+					<form action="/logout" id="logoutForm">
+						<input type="submit" id="logout" name="logout" value="Log Out!">
+					</form>
+					<input type="range" min="1" max="10" value="10" class="slider" id="volumeSlider">
+				</div>
+			</div> -->
 			<div id="imageField">
 				<img id="snek" class="img Snake" src="{% static 'JazzySnek/images/storyMode/Snake.gif' %}" alt="Snake">
 				<img id="spidey" class="img Spider" src="{% static 'JazzySnek/images/storyMode/Spider.gif' %}" alt="Spider">

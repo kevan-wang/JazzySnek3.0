@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -11,18 +11,9 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script type="text/javascript" src="{% static 'JazzySnek/js/displayFunctions.js' %}"></script>
 		<script type="text/javascript" src="{% static 'JazzySnek/js/gameFunctions.js' %}"></script>
+		<script type="text/javascript" src="{% static 'JazzySnek/js/audioHandlers.js' %}"></script>
 		<script>
 			$(document).ready(function(){
-				var audio = {};
-				for(i=0; i <= songList.length-1; i++) {				//  Load up a sound library with all the sounds.
-					name = "Caravan Palace - Black Betty.mp3"
-					source = "../../static/JazzySnek/audio/" + name
-					audio[name] = new Audio();
-					audio[name].src = source
-					break;
-				}
-				audio["Caravan Palace - Black Betty.mp3"].play();
-
 				var element = $(".glowText").get();
 				setInterval(function() {
 				    $(element).toggleClass('a').animate({
@@ -36,20 +27,20 @@
 				    });
 				},
 				300);
-
 			});
-
-			var songList = [
-				"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3", "Caravan Palace - Lone Digger.mp3",
-				"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
-				"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", 
-				"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3",
-				"Tape Five -  Geraldines Routine.mp3"
-			]
 		</script>
 	</head>
 	<body>
-
+		<span id="pageSong" name="Caravan Palace - Black Betty.mp3"></span>
+		<!-- <div id="topBar">
+			<p class="greeting glowText">Welcome back, {{ name }}!</p>
+			<div id="controller">
+				<form action="/logout" id="logoutForm">
+					<input type="submit" id="logout" name="logout" value="Log Out!">
+				</form>
+				<input type="range" min="1" max="10" value="10" class="slider" id="volumeSlider">
+			</div>
+		</div> -->
 		<div id="gameField">
 			<h1 class="glowText title">DanceOff!</h1>
 			<div id="JazzySnek">
@@ -71,10 +62,21 @@
 			<div id="danceFloor">
 				<img class="JazzySnek player" src="{% static 'JazzySnek/images/Snek.gif' %}" alt="Snek">
 				<img class="SpideyLegs player" src="{% static 'JazzySnek/images/Spidey.gif' %}" alt="Spidey">
+				<div id="inputBlocker">
+					<div id="gameOver">
+						<h1 class="glowText gameOverText"></h1>
+						<h1 class="glowText gameOverScore"></h1>
+						<form>
+							{% csrf_token %}
+							<input type="hidden" class="finalScore" name="finalScore" value="0">
+							<input type="submit" id="replayButton" name="game" value="Save & Replay?">
+						</form>
+					</div>
+				</div>
 			</div>
 			<form action="/log_score" id="menu" name="menu" method="post">
 				{% csrf_token %}
-				<input type="hidden" name="finalScore" value="">
+				<input type="hidden" class="finalScore" name="finalScore" value="0">
 				<input type="submit" id="menuButton" name="game" value="Back to Menu!">
 			</form>
 		</div>

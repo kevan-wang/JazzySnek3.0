@@ -6,12 +6,13 @@
 		<title> JazzySnek </title>
 		{% load static %}
     	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/indexStyle.css' %}">
+    	<link rel="stylesheet" type="text/css" href="{% static 'JazzySnek/css/topBar.css' %}">
 		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' ></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="{% static 'JazzySnek/js/audioHandlers.js' %}"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-
 				var element = jQuery(".glowText").get();
 				setInterval(function() {
 				    $(element).toggleClass('a').animate({
@@ -25,41 +26,21 @@
 				    });
 				},
 				300);
-
-				var audio = {};
-				for(i=0; i <= (songList.length)-1; i++) {				//  Load up a sound library with all the sounds.
-					name = songList[i]
-					source = "../../static/JazzySnek/audio/" + name
-					audio[name] = new Audio();
-					audio[name].src = source
-				}
-				randSong = Math.floor(Math.random()*songList.length)
-				audio["Caravan Palace - Lone Digger.mp3"].play();
-
-
-
-
 			});
-
-			songList = [
-				"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3", "Caravan Palace - Lone Digger.mp3",
-				"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
-				"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", 
-				"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3",
-				"Tape Five -  Geraldines Routine.mp3"
-			]
-
-
-
-
 		</script>
 	</head>
 	<body>
+		<span id="pageSong" name="Caravan Palace - Lone Digger.mp3"></span>
 		<div id="mainField">
-			<p class="greeting glowText">Welcome back, {{ name }}!</p>
-			<form action="/logout" id="logoutForm">
-				<input type="submit" id="logout" name="logout" value="Log Out!">
-			</form>
+			<div id="topBar">
+				<p class="greeting glowText">Welcome back, {{ name }}!</p>
+				<div id="controller">
+					<form action="/logout" id="logoutForm">
+						<input type="submit" id="logout" name="logout" value="Log Out!">
+					</form>
+					<input type="range" min="1" max="10" value="10" class="slider" id="volumeSlider">
+				</div>
+			</div>
 			<h1 class="title glowText">JazzySnek!</h1>
 			<h2 id="description">A Retro-Chic JazzPunk Noir Adventure!</h2>
 			<div id="selectScreen">

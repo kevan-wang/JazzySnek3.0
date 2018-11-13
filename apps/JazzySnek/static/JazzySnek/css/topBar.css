@@ -1,0 +1,43 @@
+#topBar {
+	padding: 10px;
+}
+
+.greeting {
+	padding: 10px;
+	margin-left: 10px;
+	color: black;
+	font-size: 20px;
+	font-weight: bold;
+   	transition:text-shadow 0.5s ease-in-out;    
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+	text-align: left;
+	display: inline;
+}
+
+.greeting.a {
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #30e0ff, 0 0 30px #30e0ff, 0 0 40px #30e0ff, 0 0 50px #30e0ff, 0 0 75px #30e0ff;
+}
+
+#controller {
+	position: absolute;
+	text-align: right;
+	left: 530px;
+	top: 5px;
+}
+
+#logout {
+	margin: 5px;
+	width: 100px;
+	font-size: 1em;
+	padding: 3px 6px;
+}
+
+#logoutForm {
+	margin-left: 1050px;
+}
+
+#volumeSlider {
+	width: 150px;
+	margin-left: 10px;
+	top: -5px;
+}

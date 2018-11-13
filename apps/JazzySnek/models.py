@@ -40,7 +40,7 @@ class User(models.Model):
 	securityKey = models.CharField(max_length=255)
 	highScore = models.IntegerField(default=0)
 	fastestTime = models.IntegerField(default=0)
-	status = models.CharField(max_length=30, default="Square Jeff")
+	status = models.CharField(max_length=30, default="Square Jeff!")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	objects = UserManager()

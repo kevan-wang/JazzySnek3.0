@@ -9,12 +9,14 @@
 		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' ></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="{% static 'JazzySnek/js/audioHandlers.js' %}"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				pagesDict = [ ".page1", ".page2", ".page3" ]
 				for (i = 1; i < pagesDict.length; i++) {
 					page = pagesDict[i]
 					$(page).hide()
+					console.log("HIDING PAGES")
 				}
 				var element = jQuery("#title").get();
 				setInterval(function() {
@@ -49,33 +51,11 @@
 						}, 600);
 					}
 				});
-
-
-				var audio = {};
-				for(i=0; i <= (songList.length)-1; i++) {				//  Load up a sound library with all the sounds.
-					name = songList[i]
-					console.log(name)
-					source = "../../static/JazzySnek/audio/" + name
-					audio[name] = new Audio();
-					audio[name].src = source
-				}
-				randSong = Math.floor(Math.random()*songList.length)
-				audio[songList[randSong]].play();
-
-
 			});
-
-			songList = [
-				"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3",
-				"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
-				"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", 
-				"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3",
-				"Tape Five -  Geraldines Routine.mp3"
-			]
-
 		</script>
 	</head>
 	<body>
+		<span id="pageSong" name="random"></span>
 		<div id="mainField">
 			<div class="page1 page">
 				<h2>Objective</h2>

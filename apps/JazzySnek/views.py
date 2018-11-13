@@ -25,6 +25,11 @@ def howTo(request):
 	return render(request, "JazzySnek/howToPlay.html")
 
 def storyMode(request):
+	context = {}
+	if "userID" not in request.session:		#	Security feature:  This process will not execute without an authentic login.
+		context["name"] = "Guest"
+	else:
+		context["name"] = User.objects.get(id=request.session["userID"]).userName
 	return render(request, "JazzySnek/storyMode.html")
 
 def highScores(request):
@@ -87,14 +92,52 @@ def logout(request):
 def logScore(request):
 	if "userID" in request.session:
 		score = request.POST["finalScore"]
+		print(score)
 		if score != "":
 			scoreInt = int(score)
+			print(scoreInt)
 			user = User.objects.get(id=request.session["userID"])
 			if scoreInt > user.highScore:
 				user.highScore = scoreInt
+				if (scoreInt > 50):
+					user.status = "Hep Cat!"
+				elif (scoreInt > 46):
+					user.status = "Rug Cutter!"
+				elif (scoreInt > 40):
+					user.status = "Jitter Bug!"
+				elif (scoreInt > 32):
+					user.status = "Buddy Ghee!"
+				elif (scoreInt > 24):
+					user.status = "Mellow Jack!"
+				elif (scoreInt > 18):
+					user.status = "Basic Lane!"
 				user.save()
 	return redirect('/')
 
+def replay(request):
+	if "userID" in request.session:
+		score = request.POST["finalScore"]
+		print(score)
+		if score != "":
+			scoreInt = int(score)
+			print(scoreInt)
+			user = User.objects.get(id=request.session["userID"])
+			if scoreInt > user.highScore:
+				user.highScore = scoreInt
+				if (scoreInt > 50):
+					user.status = "Hep Cat!"
+				elif (scoreInt > 46):
+					user.status = "Rug Cutter!"
+				elif (scoreInt > 40):
+					user.status = "Jitter Bug!"
+				elif (scoreInt > 32):
+					user.status = "Buddy Ghee!"
+				elif (scoreInt > 24):
+					user.status = "Mellow Jack!"
+				elif (scoreInt > 18):
+					user.status = "Basic Lane!"
+				user.save()
+	return redirect('/quick_game')
 
 
 #####		HELPER FUNCTIONS
@@ -116,7 +159,7 @@ positiveSlang = [ "Breakin' it Up!",  "Bustin' the Conk!",  "Collarin' the Jive!
 	"Swell Jam!", "Hittin' the Licks!", "Muggin' Heavy!", "Neigho, Pops!", "Ridin' the Riffs!"
 ]
 
-
+titles = [ "Square Jeff!", "Basic Lane!", "Basic Lane!", "Mellow Jack!", "Buddy Ghee!", "Jitter Bug!", "Rug Cutter!", "Hep Cat!" ]
 
 
 

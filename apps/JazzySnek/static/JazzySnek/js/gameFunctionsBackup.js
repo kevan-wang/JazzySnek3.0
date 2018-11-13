@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 ///		############ GAME SETTINGS ############
 
-	borderChance = 0.70	// Chance that the border will become owned by JazzySnek.
+	borderChance = 0.5	// Chance that the border will become owned by JazzySnek.
 
 
 
@@ -27,12 +27,10 @@ $(document).ready(function(){
 		an extra move.
 	*/
 	$("#inputBlocker").hide()
-	$("#gameOver").hide()
 	notGameOver = true 	// Keep on cycling the game over test.
 
 	// Master Controller
 	$(".tile").click(function(event){
-		console.log("CLICK!!!")
 		var coords = getCoords(event);
 		var owner = checkOwner(coords);
 		var eval = evalMove(coords, "J");
@@ -47,10 +45,9 @@ $(document).ready(function(){
 			setTimeout(function() {
 				processFullMove(enemyMove, eval[1], "S")
 				$("#inputBlocker").hide()	// Hide it to allow the player to take his next turn.
-			}, 1500);
+			}, 1800);
 		}
 	});
-
 
 
 	/*	Checks for a Game Over condition every second... crucial to do since JS is asynchronous.
@@ -59,23 +56,9 @@ $(document).ready(function(){
 	window.setInterval(function() {
 		if(gameOver() && notGameOver) {
 			var score = $("#JazzyScore").text();
-			$(".finalScore").val(score);
+			$("#finalScore").val(score);
 			notGameOver = false;
 			console.log("Game Over!")
-			if ( parseInt(score) > 32 ) {
-				$(".gameOverText").text("You've got JIVE!")
-				$(".gameOverScore").text("Final Score: " + score)
-			}
-			else if ( parseInt(score) < 32 ) {
-				$(".gameOverText").text("Nixed Out!")
-				$(".gameOverScore").text("Final Score: " + score)
-			}
-			else if ( parseInt(score) == 32 ) {
-				$(".gameOverText").text("Buddy Ghee!")
-				$(".gameOverScore").text("It's a TIE!")
-			}
-			$("#inputBlocker").show()
-			$("#gameOver").show()
 		}
 	}, 100)
 
@@ -97,13 +80,6 @@ $(document).ready(function(){
 		}
 	}
 
-
-
-	function fixFreeze() {
-	}
-
-
-
 	function processFullMove(coords, evaluation, player) {
 		doMove(coords, evaluation, player)	// Actually do the move
 		updateScore()			// 	update the score
@@ -116,10 +92,10 @@ $(document).ready(function(){
 		SScore = 0;
 		for(var i = 1; i < 9; i++) {
 			for(var j = 1; j < 9; j++) {
-				if (gameFloorMap[i][j] == 3) {
+				if (gameFloorMap[i][j] == 3 || gameFloorMap[i][j] == 4) {
 					JScore++;
 				}
-				else if (gameFloorMap[i][j] == 5) {
+				else if (gameFloorMap[i][j] == 5 || gameFloorMap[i][j] == 6) {
 					SScore++;
 				}
 			}
@@ -179,7 +155,6 @@ $(document).ready(function(){
 		//	Add random float value to the scores (randomize just a bit)
 		for (var i = 0; i < keys.length; i++) {
 			key = keys[i]
-			movesDict[key] *= 1 + (Math.random()/5)
 			randNum = Math.random() + Math.random() - Math.random()
 			movesDict[key] += randNum
 		}		
@@ -202,7 +177,7 @@ $(document).ready(function(){
 		INPUT:  
 			coords:  [y,x] coordinates.  Y and X are integers from 1 to 8, with origin at top left corner.
 		OUTPUT:  None.
-	*/
+	*/	
 	function updateAIMoves(coords) {
 		var coordID = "#" + coords[0] + coords[1];
 		var y = 0, x = 0;
@@ -292,16 +267,37 @@ $(document).ready(function(){
 		var vectIncrement = directionDict[direction];	//	Get vector for direction.
 		var score = 0;
 		var coordID = "";
-		var newClass = "", newMap = 0, newColor = "";
-		if (player == "J") { newClass = "tile3" ; newMap = 3 ; newColor = "#2e9512" }
-		else if (player == "S") { newClass = "tile5" ; newMap = 5 ; newColor = "#bd11cc" }
+		var newMap = 0, newPiece = "", tileClass = "";
+		if (player == "J") { 
+			if ( (x + y) % 2 == 0 ) {
+				newMap = 3;
+				tileClass = "tile1"
+			}
+			else {
+				newMap = 4;				
+				tileClass = "tile2"
+			}
+			newClass = "tile3"
+
+		}
+		else if (player == "S") {
+			if ( (x + y) % 2 == 0 ) {
+				newMap = 3;
+				tileClass = "tile1"
+			}
+			else {
+				newMap = 4;				
+				tileClass = "tile2"
+			}
+			newClass = "tile5"
+		}
 		while ( y > 0 && x > 0 && y < 9 && x < 9 ) {
 			// While the tile being investigated is within the dance floor (NOT on the border)
 			coordID = "#" + y + x
 			$(coordID).removeClass();
+			$(coordID).addClass(tileClass);
 			$(coordID).addClass(newClass);
 			$(coordID).addClass("tile");
-			$(coordID).animate({ backgroundColor: newColor });
 			$(coordID).attr("name", player);
 			gameFloorMap[y][x] = newMap;
 			score++;
@@ -440,8 +436,8 @@ var gameFloorMap = [
 		[ 9, 2, 1, 2, 1, 2, 1, 2, 1, 8 ],
 		[ 8, 1, 2, 1, 2, 1, 2, 1, 2, 9 ],
 		[ 9, 2, 1, 2, 1, 2, 1, 2, 1, 8 ],
-		[ 8, 1, 2, 1, 3, 5, 2, 1, 2, 9 ],
-		[ 9, 2, 1, 2, 5, 3, 1, 2, 1, 8 ],
+		[ 8, 1, 2, 1, 4, 5, 2, 1, 2, 9 ],
+		[ 9, 2, 1, 2, 5, 4, 1, 2, 1, 8 ],
 		[ 8, 1, 2, 1, 2, 1, 2, 1, 2, 9 ],
 		[ 9, 2, 1, 2, 1, 2, 1, 2, 1, 8 ],
 		[ 8, 1, 2, 1, 2, 1, 2, 1, 2, 9 ],

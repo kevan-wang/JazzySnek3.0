@@ -14,70 +14,53 @@
 
 
 $(document).ready(function(){
+
+///		############ GAME SETTINGS ############
+
+	borderChance = 0.5	// Chance that the border will become owned by JazzySnek.
+
+
+
+	/* #inputBlocker is a div that covers the dance floor in the delay for Spidey to take 
+		his move.  This keeps a tricksy player from taking advantag of JS' asynchronous 
+		processing by clicking another tile before Spidey takes his move, thus stealing
+		an extra move.
+	*/
+	$("#inputBlocker").hide()
+	notGameOver = true 	// Keep on cycling the game over test.
+
 	// Master Controller
 	$(".tile").click(function(event){
-		// if(!checkFreeze("J")) {		// if the game is NOT frozen on J's turn, execute his turn.
-			var coords = getCoords(event);
-			var owner = checkOwner(coords);
-			var eval = evalMove(coords, "J");
-			if (eval[0]) {
-				//	Perform JazzySnek's move!!!
-				var moveScore = doMove(coords, eval[1], "J")
-				//	Randomize the border tiles.
-				updateScore()
-				randomizeBorder();
-				updateAIMoves(coords)	//	AI decision dictionary.
-				//	Perform Spidey's Move!
-				// if(!checkFreeze("S")) {
-					var analysis = AITurnAnalysisDict("S");
-					var enemyMove = AIDecision(analysis);
-					eval = evalMove(enemyMove, "S")
-					setTimeout(function() {
-						moveScore = doMove(enemyMove, eval[1], "S")
-						updateScore()
-					}, 1000);
-					updateAIMoves(enemyMove)	//	AI decision dictionary.
-					// if(gameOver()) {
-					// 	gameOverProtocol()	
-					// }
-				// }
-				// else if(gameOver()) {
-				// 	gameOverProtocol()
-				// }
-				if(gameOver()) {
-					gameOverProtocol()
-				}
-			}
-		// }
-		// else {
-			// if(gameOver()) {
-			// 	gameOverProtocol()
-			// }
-			// else {
-			// 	var analysis = AITurnAnalysisDict("S");
-			// 	var enemyMove = AIDecision(analysis);
-			// 	eval = evalMove(enemyMove, "S")
-			// 	setTimeout(function() {
-			// 		moveScore = doMove(enemyMove, eval[1], "S")
-			// 		updateScore()
-			// 	}, 1000);
-			// 	updateAIMoves(enemyMove, "S")	//	AI decision dictionary.
-			// 	if(gameOver()) {
-			// 		gameOverProtocol()
-			// 	}
-			// }
-		// }
+		var coords = getCoords(event);
+		var owner = checkOwner(coords);
+		var eval = evalMove(coords, "J");
+		if (eval[0]) {
+			//	Perform JazzySnek's move!!!
+			$("#inputBlocker").show()	// Show the invisible input blocker to keep the user from double-clicking.
+			processFullMove(coords, eval[1], "J")
+			//	Perform Spidey's Move!
+			var analysis = AITurnAnalysisDict("S");
+			var enemyMove = AIDecision(analysis);
+			eval = evalMove(enemyMove, "S")
+			setTimeout(function() {
+				processFullMove(enemyMove, eval[1], "S")
+				$("#inputBlocker").hide()	// Hide it to allow the player to take his next turn.
+			}, 1800);
+		}
 	});
 
 
-
-
-	function gameOverProtocol() {
-		var score = $("#JazzyScore").text()
-		$("#finalScore").text(score)
-		console.log("Final Score: ")
-		console.log("Game over!!!")
-	}
+	/*	Checks for a Game Over condition every second... crucial to do since JS is asynchronous.
+		and Game Over check may not occur in the right places.
+	*/
+	window.setInterval(function() {
+		if(gameOver() && notGameOver) {
+			var score = $("#JazzyScore").text();
+			$("#finalScore").val(score);
+			notGameOver = false;
+			console.log("Game Over!")
+		}
+	}, 100)
 
 	function gameOver() {
 		var JScore = parseInt($("#JazzyScore").text())
@@ -89,12 +72,19 @@ $(document).ready(function(){
 
 	function checkFreeze(player) {
 		checkMoves = Object.keys(AITurnAnalysisDict(player))
-		if (checkMoves == []) {
+		if (checkMoves.length == 0) {
 			return true;
 		}
 		else {
 			return false;
 		}
+	}
+
+	function processFullMove(coords, evaluation, player) {
+		doMove(coords, evaluation, player)	// Actually do the move
+		updateScore()			// 	update the score
+		updateAIMoves(coords)	//	update the list of possible moves.
+		randomizeBorder();		//	randomize the border
 	}
 
 	function updateScore() {
@@ -454,9 +444,6 @@ possibleMoves = [ "#33", "#34", "#35", "#36", "#43", "#46", "#53", "#56", "#63",
 
 
 
-///		############ GAME SETTINGS ############
-
-boderChance = 0.5	// Chance that the border will become owned by JazzySnek.
 
 
 

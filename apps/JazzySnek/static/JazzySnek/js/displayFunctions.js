@@ -96,6 +96,36 @@ var floorColors = [
 
 /*
 
+
+	function prepFloor() {
+	// Prepares the dance floor background
+		 STRUCTURE OF THE TILE TAG:
+			Regardless of the element, its html attributes have relevance for the game's mechanics.
+				ID:  Two-digit number representing its mapped X, Y coordinates from the upper-left corner.
+				Name:  Who it belongs to.
+		
+		var tileDict = {
+			1: tile1, 2: tile2, 3: tile3, 4: tile4,
+			5: tile5, 6: tile6, 8: bord1, 9: bord2 
+		}
+		var elemNum = 0;
+		var elem = "";
+		var x = 1
+		// Populate the dancefloor with tile and border elements.
+		for (var i = 0; i <= 9; i++) {
+			for (var j = 0; j <= 9; j++) {
+				elemNum = danceFloorMap[i][j];
+				elem = tileDict[elemNum];
+				elem = elem.replace("id=''", "id='" + i + j + "'");
+				$("#danceFloor").append(elem);
+			}
+		}
+		newColors = randomColorPair()
+		$(".tile1").css("background-color", newColors[0]);
+		$(".tile2").css("background-color", newColors[1]);
+	}
+
+
 $(document).ready(function(){
 	// Prepares the dance floor background
 	for(i = 0; i < 32; i++) {

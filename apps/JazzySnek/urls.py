@@ -13,6 +13,7 @@ urlpatterns = [
 	url(r'^story_mode$', views.storyMode),	# This line has changed! Notice that urlpatterns is a list, the comma is in anticipation of all the routes that will be coming soon
 	url(r'^log_score$', views.logScore),	# This line has changed! Notice that urlpatterns is a list, the comma is in anticipation of all the routes that will be coming soon
 	url(r'^high_scores$', views.highScores),	# This line has changed! Notice that urlpatterns is a list, the comma is in anticipation of all the routes that will be coming soon
+	url(r'^replay$', views.replay),	# This line has changed! Notice that urlpatterns is a list, the comma is in anticipation of all the routes that will be coming soon
 ]
 
 
