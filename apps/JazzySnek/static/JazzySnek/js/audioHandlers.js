@@ -71,11 +71,9 @@ function setFirstSong(name) {
 }
 
 var songList = [
-	"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3", "Caravan Palace - Lone Digger.mp3",
-	"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
-	"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", 
-	"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3",
-	"Tape Five -  Geraldines Routine.mp3"
+	"Caravan Palace - Black Betty.mp3", "Caravan Palace - Brotherswing.mp3", "Caravan Palace - Lone Digger.mp3", 
+	"Parov Stelar - The Mojo Radio Gang.mp3", "Postmodern Jukebox & Bart & Baker - Thrift Shop Remix.mp3"
 ]
 
-
+//	"Jamie Berry & Octavia Rose - Lost In the Rhythm.mp3", "Jamie Berry & Rosie Harte - Peeping Tom.mp3",  
+//	"Parov Stelar - All Night.mp3", "Parov Stelar - Booty Swing.mp3", "Parov Stelar - Josephine.mp3", "Tape Five -  Geraldines Routine.mp3"
